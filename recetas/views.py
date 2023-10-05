@@ -6,28 +6,37 @@ from post.models import Recetas
 
 import random
 import json
+    
 
-
-def desayuno_json(request):
+def get_receta(request, category):
     """Retorna un desayuno"""
-    desayunos = Recetas.objects.filter(categoria='desayunos')
-    desayunos = list(desayunos.values())
-    data = random.choices(desayunos)    
+    recetas = Recetas.objects.filter(categoria=category)
+    recetas = list(recetas.values())
+    data = random.choices(recetas)    
     
     return JsonResponse(data[0])
 
 
 def semana_json(request):
     """Retorna un desayuno por dia"""    
-    respuesta = desayuno_json(request)
-    data = respuesta.content.decode('utf-8')
-    data = json.loads(data)
-    # import pdb; pdb.set_trace()
+    desayunos = {}
+    bebidas = {}
     
-    # for i in range():
-    #     respuesta = desayuno_json(request)
-    #     data += respuesta.content.decode('utf-8')
+    for i in range(5):
+        respuesta = get_receta(request, 'desayunos')
+        desayuno = respuesta.content.decode('utf-8')
+        desayuno = json.loads(desayuno)
+        desayunos[i] = desayuno
+        
+        respuesta = get_receta(request, 'bebidas')
+        bebida = respuesta.content.decode('utf-8')
+        bebida = json.loads(bebida)
+        bebidas[i] = bebida
     
+    data = {
+            'desayunos': desayunos,
+            # 'bebidas': bebidas
+            }
     return JsonResponse(data)
 
 

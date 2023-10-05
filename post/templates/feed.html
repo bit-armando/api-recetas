@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recetas de Desayuno</title>
+    <style>
+        /* Estilos CSS para dar formato a la lista de desayunos */
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recetas de Desayuno</h1>
+    <ul id="desayunos-list"></ul>
+
+    <script>
+        // Datos JSON proporcionados por Django
+        const desayunosData = {
+                "0": {
+                    "id": 18,
+                    "nombre": "HOTCAKES DE MAZAPÁN",
+                    "categoria": "desayunos",
+                    "tiempo": "6 mins",
+                    "dificultad": "Baja",
+                    "porciones": 12,
+                    "ingredientes": "['2 1/2 tazas de harina', '3 cucharadas de azúcar', '2 cucharadas de polvo para hornear', '1 pizca de sal', '2 huevos', '1 3/4 tazas de leche', '4 cucharadas de mantequilla, derretida', '1 cucharadita de esencia de vainilla', '8 mazapanes, desmoronado', 'suficiente de mantequilla, para cocinar', 'al gusto de crema batida, para decorar', 'al gusto de mazapán, para decorar']",
+                    "pasos": "['Mezcla la harina, el azúcar, el polvo para hornear, la sal, los huevos y la leche en un bowl hasta integrar perfectamente. Agrega la mantequilla y los mazapanes e incorpora.', 'Calienta un poco de mantequilla en una sartén a temperatura media, agrega un poco de la mezcla de hotcakes y cocina durante 3 minutos o hasta que estén bien cocidos. Voltea y cocina por 3 minutos más.', 'Sirve una torre de hotcakes de mazapán y decora con crema batida y mazapán.']",
+                    "img": "https://cdn7.kiwilimon.com/brightcove/10111/10111.jpg"
+                },
+                "1": {
+                    "id": 21,
+                    "nombre": "¿CÓMO HACER HOT CAKES EN 5 MINUTOS?",
+                    "categoria": "desayunos",
+                    "tiempo": "6 mins",
+                    "dificultad": "Baja",
+                    "porciones": 4,
+                    "ingredientes": "['2 tazas de harina, para los hot cakes', '2 Huevos San Juan®, para los hot cakes', '4 cucharadas de azúcar, para los hot cakes', '2 cucharadas de polvo para hornear, para los hot cakes', '1 pizca de sal, para los hot cakes', '1 1/2 tazas de leche, para los hot cakes', '2 cucharadas de mantequilla, derretida, para los hot cakes', '1 cucharada de esencia de vainilla, para los hot cakes', 'al gusto de manzana, en rebanadas delgadas', 'al gusto de chispas de chocolate', 'al gusto de plátano, en cubos pequeños', 'al gusto de blueberry', 'al gusto de mantequilla', 'al gusto de miel de maple']",
+                    "pasos": "['Mezcla la harina, el azúcar, el polvo para hornear, la sal, la leche y las piezas de Huevo San Juan® en un bowl hasta integrar y agrega la mantequilla derretida y la esencia de vainilla. Termina de incorporar.', 'Coloca la mezcla para hot cakes en moldes para hielo y agrega los cubos de manzana, las chispas de chocolate, el plátano y las blueberries de manera intercalada. Congela durante 2 horas.', 'Calienta un poco de mantequilla en una plancha a temperatura media, coloca los cubos de hot cakes congelados y cocina de cada lado durante 3 minutos o hasta que estén cocidos en el centro.', 'Sirve una torre de hot cakes y acompaña con miel y fruta.']",
+                    "img": "https://cdn7.kiwilimon.com/brightcove/10083/10083.jpg"
+                },
+                "2": {
+                    "id": 11,
+                    "nombre": "HUEVOS EN SALSA VERDE",
+                    "categoria": "desayunos",
+                    "tiempo": "15 mins",
+                    "dificultad": "Baja",
+                    "porciones": 4,
+                    "ingredientes": "['8 tomates', '4 chiles serranos', '1/2 cebollas', '1 diente de ajo', '1/2 tazas de caldo de pollo', 'suficiente de aceite vegetal', '1/2 tazas de cebolla, en tiras', '3 Huevos San Juan®', 'al gusto de sal', 'al gusto de pimienta', 'al gusto de cilantro, para decorar', 'al gusto de frijoles refritos, para acompañar', 'al gusto de tortillas de maíz, para acompañar']",
+                    "pasos": "['Asa los tomates, el chile serrano, la cebolla y el ajo en un comal hasta que todos los ingredientes estén dorados de ambos lados.', 'Licúa los ingredientes con una taza de caldo de pollo hasta que la salsa verde quede martajada. Reserva.', 'Calienta el aceite en una sartén a fuego medio, sofríe la cebolla hasta que esté ligeramente dorada y agrega las piezas de Huevo San Juan®. Sazona el huevo con sal y pimienta, cocina por 3 minutos sin dejar de mover, vierte la salsa y cocina por 2 minutos más. Añade las hojas de cilantro.', 'Acompaña los huevos en salsa verde con frijoles refritos, tortillas y café de olla.']",
+                    "img": "https://cdn7.kiwilimon.com/brightcove/10148/10148.jpg"
+                },
+                "3": {
+                    "id": 65,
+                    "nombre": "HOT CAKES DE ELOTE",
+                    "categoria": "desayunos",
+                    "tiempo": "10 mins",
+                    "dificultad": "Baja",
+                    "porciones": 10,
+                    "ingredientes": "['2 tazas de leche', '1 taza de grano de elote amarillo', '2 huevos', '1/4 tazas de mantequilla, derretida', '2 tazas de harina de trigo', '1 cucharada de polvo para hornear', 'suficiente de mantequilla, para el sartén', 'suficiente de leche condensada, para decorar', 'suficiente de grano de elote amarillo, para decorar']",
+                    "pasos": "['Licúa la leche y el elote por 5 minutos o hasta que el elote esté bien molido e integrado con la leche.', 'Coloca la harina, la mezcla anterior de leche con elote, el huevo, la mantequilla y el polvo para hornear en un bowl, luego mezcla con un batidor globo por 5 minutos o hasta obtener una mezcla homogénea.', 'Calienta un sartén a fuego medio y añade un poco de mantequilla para engrasar, después vierte ¼ de taza de la mezcla y cocina el hot cake de elote durante 3 minutos de cada lado, voltea cuando se comiencen a formar burbujas y retira cuando esté doradito de cada lado.', 'Sirve los hot cakes de elote en un plato extendido y decora con leche condensada y granos de elote.']",
+                    "img": "https://cdn7.kiwilimon.com/brightcove/9025/9025.jpg"
+                },
+                "4": {
+                    "id": 22,
+                    "nombre": "PAN TOSTADO PARA DESAYUNAR",
+                    "categoria": "desayunos",
+                    "tiempo": "15 mins",
+                    "dificultad": "Baja",
+                    "porciones": 3,
+                    "ingredientes": "['2 tazas de jitomate cherry, en mitades, para el pan de jitomate cherry', '1 1/2 tazas de champiñón, en rebanadas, para el pan de hongos', '6 rebanadas de pan rústico', '1/4 tazas de nuez de la India', 'suficiente de aceite de oliva, para dorar las verduras y el pan', 'al gusto de sal, para dorar las verduras', 'al gusto de pimienta', '3 tazas de Yogurt Griego sin azúcar Danone®', '1 cucharadita de ajo en polvo', '1 taza de queso doble crema, desmoronado', 'al gusto de sal', 'al gusto de pimienta', 'al gusto de albahaca, para el pan de jitomate', '2 aguacates, rebanado, para el pan de aguacate', 'al gusto de kale, frito, para el pan de aguacate', 'al gusto de perejil, para el pan de hongos', 'al gusto de aceite de oliva, para acompañar']",
+                    "pasos": "['Coloca los jitomates, el mix de champiñone en una charola con papel encerado. Posteriormente, coloca la nuez y el pan en otra charola. Agrega un poco de aceite de oliva en las dos charolas. En la charola de verduras agrega sal, pimienta y hornea a 180 °C por 20 minutos. Por otro lado, hornea el pan y la nuez a 200 °C por 10 minutos.', 'Mezcla el Yogurt Griego sin azúcar Danone®, el ajo en polvo, el queso doble crema, la sal y la pimienta en un bowl. Reserva en refrigeración.', 'Coloca las rebanas de pan en una tabla.\\n\\nPara el pan tostado con jitomate cherry: Agrega un poco de la mezcla de Yogurt Griego sin azúcar Danone®, jitomate cherry y hojas de albahaca.\\n\\nPara el pan tostado con aguacate: Añade un poco de la mezcla de Yogurt Griego sin azúcar Danone®, aguacate rebanado en forma de abanico cubriendo todo el pan y un poco de kale frito.\\n\\nPara el pan tostado con champiñón: Agrega un poco de la mezcla de Yogurt Griego sin azúcar Danone®, setas, hongos y hojas de perejil.', 'Disfruta de estas tres opciones de pan tostado para el desayuno con un poco de aceite de oliva.']",
+                    "img": "https://cdn7.kiwilimon.com/brightcove/10075/10075.jpg"
+                }
+        };
+
+        // Función para mostrar los desayunos en la página
+        function mostrarDesayunos() {
+            const desayunosList = document.getElementById('desayunos-list');
+
+            for (const key in desayunosData.desayunos) {
+                const desayuno = desayunosData.desayunos[key];
+                const listItem = document.createElement('li');
+
+                listItem.innerHTML = `
+                    <h2>${desayuno.nombre}</h2>
+                    <p>Categoría: ${desayuno.categoria}</p>
+                    <p>Tiempo: ${desayuno.tiempo}</p>
+                    <p>Dificultad: ${desayuno.dificultad}</p>
+                    <p>Porciones: ${desayuno.porciones}</p>
+                    <h3>Ingredientes:</h3>
+                    <ul>
+                        ${desayuno.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join('')}
+                    </ul>
+                    <h3>Pasos:</h3>
+                    <ol>
+                        ${desayuno.pasos.map(paso => `<li>${paso}</li>`).join('')}
+                    </ol>
+                    <img src="${desayuno.img}" alt="${desayuno.nombre}">
+                `;
+
+                desayunosList.appendChild(listItem);
+            }
+        }
+
+        // Llama a la función para mostrar los desayunos al cargar la página
+        window.onload = mostrarDesayunos;
+    </script>
+</body>
+</html>

@@ -22,6 +22,6 @@ from post import views as posts_views
 
 urlpatterns = [
     path('semana/', local_views.semana_json),
-    path('desayuno/', local_views.desayuno_json),
-    path('semana/prueba/', local_views.semana_prueba),
+    path('random-recet/<str:category>', local_views.get_receta),
+    path('semana/prueba/', posts_views.list_semana),
 ]
