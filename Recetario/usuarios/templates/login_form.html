@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    
+    <form method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required><br>
+        
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+        
+        <input type="submit" value="Login">
+    </form>
+    
+    {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% endif %}
+    
+    {% if access_token %}
+    <p>Access Token: {{ access_token }}</p>
+    <p>Refresh Token: {{ refresh_token }}</p>
+    <p>User Data: {{ user_data }}</p>
+    <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>
