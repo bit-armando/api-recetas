@@ -73,7 +73,6 @@ class Register(GenericAPIView):
         if serializer.is_valid():
             validated_data = serializer.validated_data
             serializer.create(validated_data) 
-            #return Response(serializer.data, status=status.HTTP_201_CREATED)
             return redirect("login")
         else:
             error_message = 'Contraseña o nombre de usuario incorrectos'
