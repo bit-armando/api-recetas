@@ -1,0 +1,45 @@
+.header{
+    background-image: url(../images/nav.jpg);
+    height: 35rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    object-fit: cover;
+}
+
+.header__texto{
+    text-align: center;
+    margin-top: 5rem;
+    font-size: 2rem
+}
+
+.header__texto, .logo, .navegacion__enlace{
+    color: rgb(84, 84, 84);
+}
+
+.barra{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 4rem;
+}
+
+.logo{
+    font-weight: normal;
+    font-size: 1.6rem;
+}
+
+.logo__bold{
+    font-weight: 700;
+}
+
+.navegacion{
+    display: flex;
+    gap: 2rem;
+}
+
+.navegacion__enlace{
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;
+}

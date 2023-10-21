@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Recetario</title>
+    
+    <!-- Additional CSS Files -->
+    <link href="{% static 'css/nav.css' %}" rel="stylesheet">   
+    <link href="{% static 'css/normalize.css' %}" rel="stylesheet">   
+    <link href="{% static 'css/globales.css' %}" rel="stylesheet">   
+    
+    <!-- sub nav -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    <link rel="icon" type="image/png" href="{% static 'publicaciones/assets/images/libro-magico.png' %}">
+
+  </head>
+
+  <body>
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+      <div class="preloader-inner">
+        <span class="dot"></span>
+        <div class="dots">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header">
+
+        <div class="contenedor">
+            <div class="barra">
+                <a class="logo" href="{% url 'home'%}">
+                    <h1 class="centrar-texto">Blog<span class="logo__bold"> De Recetas</span></h1>
+                </a>
+
+                <nav class="navegacion">
+                    <a href="{% url 'home'%}" class="navegacion__enlace">Recetas</a>
+                    <a href="{% url 'home'%}" class="navegacion__enlace">Blog</a>
+                    <a href="{% url 'login'%}" class="navegacion__enlace">Iniciar Sesion</a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="header__texto">
+            <h2 class="no-margin">Blog de Recetas con cientos de recetas y notas</h2>
+            <p class="no-margin">Aprende de los Expertos con las Mejores Recetas y Consejos</p>
+        </div>
+    </header>
+  
+    {% block content%}
+
+    {% endblock%}
+    
+
+  </body>
+
+</html>
