@@ -1,7 +1,6 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.urls import reverse_lazy
 from django.urls import reverse
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.list import ListView
@@ -23,7 +22,7 @@ class BlogCreateView(CreateView):
         return super().form_valid(form)
     
     def get_success_url(self):
-        return reverse('blog-detail', kwargs={'pk': self.object.pk})    
+        return reverse('blog-list')    
     
 
 class BlogUpdateView(UpdateView):

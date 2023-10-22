@@ -1,0 +1,26 @@
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+  {% if receta.author.id == request.user.id %}
+  <a href="{% url 'receta-update' receta.id %}"> Editar receta </a>
+  <br>
+  <a href="{% url 'receta-delete' receta.id %}"> Eliminar receta </a>
+
+  {% endif %}
+{% endif %}
+
+
+<h1>{{ receta.nombre }}</h1>
+  <p>Publicado por {{ receta.author }} on {{ receta.created_date }}</p>
+  <p>Categoria {{ receta.categoria }}</p>
+  <p>Tiempo {{ receta.tiempo }}</p>
+  <p>Dificultad {{ receta.dificultad }}</p>
+  <p>Porciones: {{ receta.porciones }}</p>
+  <p>ingredientes {{ receta.ingredientes }}</p>
+  <p>pasos {{ receta.pasos }}</p>
+
+  <a href="{% url 'recetas-list'  %}"> Volver  </a>
+
+
+{% endblock %}
