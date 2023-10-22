@@ -1,44 +1,53 @@
+{% extends 'nav.html' %}
 
 {% block content %}
 
-  <h1>Recetas</h1>
+  <section>
+    <h1>Recetas</h1>
 
-  {% if request.user.is_authenticated %}
-    <a href="{% url 'my-recetas'  %}"> Mis recetas </a>
-
-    <a href="{% url 'receta-create'  %}"> Crear receta </a>
-
-  {% endif %}
-
-
-  <div>
-    {% for receta in recetas %}
-      <div>
-        <h2><a href="{% url 'receta-detail' receta.pk %}">{{ receta.nombre }}</a></h2>
-        <p>{{ receta.categoria }}</p>
+    <div class="division-blog">
+      <div class="div-opciones-blog">
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'my-recetas'  %}"> Mis recetas </a>
+    
+        <a href="{% url 'receta-create'  %}"> Crear receta </a>
+    
+        {% endif %}
+  
       </div>
-    {% endfor %}
-  </div>
-
-  <nav>
-    {% if is_paginated %}
-        <ul class="pagination">
-            {% if page_obj.has_previous %}
-                <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
-            {% endif %}
-
-            {% for i in paginator.page_range %}
-                <li {% if page_obj.number == i %} class="active" {% endif %}>
-                    <a href="?page={{i}}">{{ i }}</a>
-                </li>
-            {% endfor %}
-
-            {% if page_obj.has_next %}
-                <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
-            {% endif %}
-        </ul>
-    {% endif %}
-</nav>
+    
+      <div class="div-blogs">
+        {% for receta in recetas %}
+          <div class="div-blog">
+            <h2><a href="{% url 'receta-detail' receta.pk %}">{{ receta.nombre }}</a></h2>
+            <p>{{ receta.categoria }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+  
+    <nav>
+      {% if is_paginated %}
+          <ul class="pagination">
+              {% if page_obj.has_previous %}
+                  <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+              {% endif %}
+  
+              {% for i in paginator.page_range %}
+                  <li {% if page_obj.number == i %} class="active" {% endif %}>
+                      <a href="?page={{i}}">{{ i }}</a>
+                  </li>
+              {% endfor %}
+  
+              {% if page_obj.has_next %}
+                  <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+              {% endif %}
+          </ul>
+      {% endif %}
+    </nav>
+  </section>
+  
 
 
 {% endblock %}
