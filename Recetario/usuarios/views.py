@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
 
 from rest_framework import status
 from rest_framework.generics import GenericAPIView
@@ -16,7 +17,10 @@ from django.http import HttpResponse
 
 
 User = get_user_model()
+
 def home(request):
+    print(request.user)
+
     return render(request, "home.html")
 
 
@@ -41,6 +45,7 @@ class Login(TokenObtainPairView):
                     'user_data': user_serializer.data,
                     'message': 'Inicio de Sesion Existoso'
                 }
+                login(request, user)
                 return redirect("home")
             else:
                 error_message = 'Contraseña o nombre de usuario incorrectos'
@@ -55,15 +60,16 @@ class Login(TokenObtainPairView):
         return render(request, 'login_form.html')
 
 
-
 class Logout(GenericAPIView):
-    def post(self, request, *args, **kwargs):
-        user = User.objects.filter(id=request.data.get('user', 0))
-        if user.exists():
-            RefreshToken.for_user(user.first())
-            return Response({'message': 'Sesión cerrada correctamente.'}, status=status.HTTP_200_OK)
-        return Response({'error': 'No existe este usuario.'}, status=status.HTTP_400_BAD_REQUEST)
+    serializer_class = UserSerializer
 
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            logout(request)  
+            return redirect("home")
+        else:
+            return Response({'error': 'El usuario no está autenticado.'}, status=status.HTTP_400_BAD_REQUEST)            
+            
 class Register(GenericAPIView):
     serializer_class = UserSerializer
 

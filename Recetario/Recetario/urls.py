@@ -39,7 +39,6 @@ urlpatterns = [
    path('users/',include('usuarios.api.routers')),
    path('', include('usuarios.urls')),
    
-   path('blogs_api/',include('blogs.api.routers')),
    path('blogs/', include('blogs.urls')),
 ]
 

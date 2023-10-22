@@ -1,0 +1,43 @@
+
+{% block content %}
+
+
+  <h1>Blog List</h1>
+
+  {% if request.user.is_authenticated %}
+      <a href="{% url 'blog-create'  %}"> Crear blog </a>
+
+  {% endif %}
+
+
+  <div>
+    {% for blog in blogs %}
+      <div>
+        <h2><a href="{% url 'blog-detail' blog.pk %}">{{ blog.title }}</a></h2>
+        <p>{{ blog.content }}</p>
+      </div>
+    {% endfor %}
+  </div>
+
+  <nav>
+    {% if is_paginated %}
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+            {% endif %}
+
+            {% for i in paginator.page_range %}
+                <li {% if page_obj.number == i %} class="active" {% endif %}>
+                    <a href="?page={{i}}">{{ i }}</a>
+                </li>
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</nav>
+
+
+{% endblock %}
