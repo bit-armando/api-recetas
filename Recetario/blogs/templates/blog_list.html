@@ -18,6 +18,12 @@
     
       <div class="div-blogs">
         {% for blog in blogs %}
+        {% if blog.photo %}
+          <img src="{{blog.photo.url}}" >
+        {% else %}
+          <p>No image available</p>
+        {%endif%}
+
           <div class="div-blog">
             <h2><a href="{% url 'blog-detail' blog.pk %}">{{ blog.title }}</a></h2>
             <p>{{ blog.content }}</p>

@@ -18,6 +18,12 @@
     
       <div class="div-blogs">
         {% for receta in recetas %}
+
+        {% if receta.photo %}
+          <img src="{{receta.photo.url}}" >
+        {% else %}
+          <p>No image available</p>
+        {%endif%}
           <div class="div-blog">
             <h2><a href="{% url 'receta-detail' receta.pk %}">{{ receta.nombre }}</a></h2>
             <p>{{ receta.categoria }}</p>
