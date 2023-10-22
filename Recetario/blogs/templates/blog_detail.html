@@ -1,3 +1,4 @@
+{% load static %}
 
 {% block content %}
 
@@ -14,6 +15,13 @@
 <h1>{{ blog.title }}</h1>
   <p>Publicado por {{ blog.author }} on {{ blog.created_date }}</p>
   <p>{{ blog.content }}</p>
+
+
+  {% if blog.photo %}
+    <img src="{{blog.photo.url}}" >
+  {% else %}
+    <p>No image available</p>
+  {%endif%}
 
 <a href="{% url 'blog-list'  %}"> Volver  </a>
 

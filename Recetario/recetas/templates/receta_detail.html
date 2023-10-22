@@ -20,6 +20,12 @@
   <p>ingredientes {{ receta.ingredientes }}</p>
   <p>pasos {{ receta.pasos }}</p>
 
+  {% if receta.photo %}
+    <img src="{{receta.photo.url}}" >
+  {% else %}
+    <p>No image available</p>
+  {%endif%}
+
   <a href="{% url 'recetas-list'  %}"> Volver  </a>
 
 

@@ -14,79 +14,73 @@ from usuarios.api.serializers import (
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-
+from django.views.generic import View
 
 User = get_user_model()
 
 def home(request):
-    print(request.user)
-
     return render(request, "home.html")
 
+def Login(request):
+    if request.method=="POST":
+        email = request.POST.get('email', '')
+        password = request.POST.get('password', '')
 
-class Login(TokenObtainPairView):
-    serializer_class = CustomTokenObtainPairSerializer
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            user = None
 
-    def post(self, request, *args, **kwargs):
-        email = request.data.get('email', '')
-        password = request.data.get('password', '')
-        user = authenticate(
-            email=email,
-            password=password
-        )
+        if user is not None:
+            authenticated_user = authenticate(
+                request,
+                email=email,
+                password=password
+            )
 
-        if user:
-            login_serializer = self.serializer_class(data=request.data)
-            if login_serializer.is_valid():
-                user_serializer = CustomUserSerializer(user)
-                context = {
-                    'access_token': login_serializer.validated_data.get('access'),
-                    'refresh_token': login_serializer.validated_data.get('refresh'),
-                    'user_data': user_serializer.data,
-                    'message': 'Inicio de Sesion Existoso'
-                }
-                login(request, user)
+            if authenticated_user:
+                login(request, authenticated_user)
                 return redirect("home")
             else:
                 error_message = 'Contraseña o nombre de usuario incorrectos'
         else:
-            error_message = 'Contraseña o nombre de usuario incorrectos'
+            error_message = 'El usuario no existe'
 
         context = {
             'error_message': error_message
         }
-        return render(request, 'login_error.html', context)
-    def get(self, request, *args, **kwargs):
+        return render(request, 'login_form.html', context)
+    
+    if request.method=="GET":
         return render(request, 'login_form.html')
 
 
-class Logout(GenericAPIView):
-    serializer_class = UserSerializer
-
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            logout(request)  
-            return redirect("home")
-        else:
-            return Response({'error': 'El usuario no está autenticado.'}, status=status.HTTP_400_BAD_REQUEST)            
-            
-class Register(GenericAPIView):
-    serializer_class = UserSerializer
-
-    def post(self, request, *args, **kwargs):
-        serializer = UserSerializer(data=request.data)
+def Logout(request):
+    if request.user.is_authenticated:
+        logout(request)  
+        return redirect("home")
+    else:
+        return Response({'error': 'El usuario no está autenticado.'}, status=status.HTTP_400_BAD_REQUEST)            
         
-        if serializer.is_valid():
-            validated_data = serializer.validated_data
-            serializer.create(validated_data) 
-            return redirect("login")
-        else:
-            error_message = 'Contraseña o nombre de usuario incorrectos'
+class VRegistro(View):
+    def get(self, request):
+        return render(request, "register.html")
+        
+    def post(self, request):
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
 
-            context = {
-                'error_message': error_message
-            }
-            return render(request, 'register.html', context)
-    
-    def get(self, request, *args, **kwargs):
-        return render(request, 'register.html')
+        if not email or not password or not username:
+            error_message = 'Complete todos los campos'
+        elif User.objects.filter(email=email).exists():
+            error_message = 'Email ya existe'
+        else:
+            user = User(email=email, username = username)
+            user.set_password(password) 
+
+            user.save()
+
+            return redirect("login")
+
+        return render(request, "register.html", {'error_message': error_message})
