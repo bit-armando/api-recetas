@@ -1,0 +1,15 @@
+body{
+    margin: 2rem 0;
+    
+}
+
+textarea{
+    height: 15rem;
+}
+
+select{
+    width: 18rem;
+    height: 2rem;
+    border-radius: 6px;
+    border: 1px solid black;
+}

@@ -1,0 +1,16 @@
+.contenido-detalles-receta{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 20rem;
+}
+
+.opciones-recetas{
+    display: flex;
+    flex-direction: column;
+}
+
+.opciones-recetas a{
+    color: black;
+}

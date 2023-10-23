@@ -1,27 +1,37 @@
+{% extends 'nav.html' %}
+
 {% load static %}
 
 {% block content %}
 
-{% if request.user.is_authenticated %}
-  {% if blog.author.id == request.user.id %}
-  <a href="{% url 'blog-update' blog.id %}"> Editar blog </a>
-  <br>
-  <a href="{% url 'blog-delete' blog.id %}"> Eliminar blog </a>
+<div class="contenido-detalles-receta">
+  <div class="opciones-recetas">
+    {% if request.user.is_authenticated %}
+      {% if blog.author.id == request.user.id %}
+      <a href="{% url 'blog-update' blog.id %}"> Editar blog </a>
+      <br>
+      <a href="{% url 'blog-delete' blog.id %}"> Eliminar blog </a>
 
-  {% endif %}
-{% endif %}
+      {% endif %}
+    {% endif %}
+
+  </div>
+  
+
+  <div class="detalles-recetas">
+    <h1>{{ blog.title }}</h1>
+    <p>Publicado por {{ blog.author }} on {{ blog.created_date }}</p>
+    <p>{{ blog.content }}</p>
 
 
-<h1>{{ blog.title }}</h1>
-  <p>Publicado por {{ blog.author }} on {{ blog.created_date }}</p>
-  <p>{{ blog.content }}</p>
+    {% if blog.photo %}
+      <img src="{{blog.photo.url}}" >
+    {% else %}
+      <p>No image available</p>
+    {%endif%}
 
-
-  {% if blog.photo %}
-    <img src="{{blog.photo.url}}" >
-  {% else %}
-    <p>No image available</p>
-  {%endif%}
+  </div>
+</div>
 
 <a href="{% url 'blog-list'  %}"> Volver  </a>
 
