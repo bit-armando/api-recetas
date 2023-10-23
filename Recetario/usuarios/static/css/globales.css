@@ -12,3 +12,8 @@ a{
     width: min(90%, 120rem);
     margin: 0 auto;
 }
+
+.foto-publicaciones{
+    width: 20rem;
+    height: 20rem;
+}

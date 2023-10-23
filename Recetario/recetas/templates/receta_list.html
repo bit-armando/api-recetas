@@ -20,7 +20,7 @@
         {% for receta in recetas %}
 
         {% if receta.photo %}
-          <img src="{{receta.photo.url}}" >
+          <img class="foto-publicaciones" src="{{receta.photo.url}}" >
         {% else %}
           <p>No image available</p>
         {%endif%}
