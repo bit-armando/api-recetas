@@ -2,23 +2,18 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 
 from rest_framework import status
-from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 
-from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework_simplejwt.views import TokenObtainPairView
-
-from usuarios.api.serializers import (
-    CustomTokenObtainPairSerializer, CustomUserSerializer,UserSerializer
-)
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.views.generic import View
 
+import pandas as pd
 User = get_user_model()
 
 def home(request):
+
+
     return render(request, "home.html")
 
 def Login(request):
