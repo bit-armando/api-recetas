@@ -8,13 +8,20 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 from django.views.generic import View
 
+
+from recetas.models import Recetas
+from blogs.models import Blog
+
 import pandas as pd
 User = get_user_model()
 
 def home(request):
 
+    recetas_data = Recetas.objects.all().order_by('-created_date')[:6]
+    blogs_data = Blog.objects.all().order_by('-created_date')[:6]
 
-    return render(request, "home.html")
+    return render(request, "home.html", {"recetas": recetas_data,
+                                         "blogs":blogs_data})
 
 def Login(request):
     if request.method=="POST":

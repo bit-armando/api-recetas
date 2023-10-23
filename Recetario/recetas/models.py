@@ -23,7 +23,7 @@ categorias_choices = (
 class Recetas(models.Model):
     nombre = models.CharField(max_length=100)
     categoria = models.CharField(max_length=30, choices=categorias_choices, default='Entradas')
-    tiempo = models.TimeField(blank=True, null=True)
+    tiempo = models.CharField(max_length=50)
     dificultad = models.CharField(max_length=10, choices=dificultad_choices, default='Facil')
     porciones = models.PositiveIntegerField()
     ingredientes = models.TextField()
