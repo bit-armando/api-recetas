@@ -18,3 +18,15 @@ a{
     height: 20rem;
     object-fit: cover;
 }
+
+input[type="submit"]{
+    cursor: pointer;
+}
+
+.error{
+    background-color: red;
+    color: white;
+    margin: .5rem;
+    padding: 1rem;
+    border-radius: 8px;
+}

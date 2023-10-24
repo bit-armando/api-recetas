@@ -20,20 +20,25 @@
   <div class="detalles-recetas">
     <h1>{{ receta.nombre }}</h1>
     <p>Publicado por {{ receta.author }} on {{ receta.created_date }}</p>
-    <p>Categoria {{ receta.categoria }}</p>
-    <p>Tiempo {{ receta.tiempo }}</p>
-    <p>Dificultad {{ receta.dificultad }}</p>
-    <p>Porciones: {{ receta.porciones }}</p>
-    <p>Ingredientes </p>
-    <p>{{ receta.ingredientes }}</p>
-    <p>Pasos </p>
-    <p>{{ receta.pasos }}</p>
-
     {% if receta.photo %}
       <img src="{{receta.photo.url}}" >
     {% else %}
       <p>No image available</p>
     {%endif%}
+
+    <div class="div-dr">
+      <p>Categoria {{ receta.categoria }}</p>
+      <p>Tiempo {{ receta.tiempo }}</p>
+      <p>Dificultad {{ receta.dificultad }}</p>
+      <p>Porciones: {{ receta.porciones }}</p>
+    </div>
+    
+    <p>Ingredientes </p>
+    <p>{{ receta.ingredientes }}</p>
+    <p>Pasos </p>
+    <p>{{ receta.pasos }}</p>
+
+    
   </div>
 </div>
 

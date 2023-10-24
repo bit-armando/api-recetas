@@ -5,6 +5,7 @@
     <title>Login</title>
 
     <link href="{% static 'css/login.css' %}" rel="stylesheet">
+    <link href="{% static 'css/globales.css' %}" rel="stylesheet">
 </head>
 <body>
     <div class="div-body">
@@ -20,14 +21,16 @@
 
             <h4>¿Eres nuevo?<a href="{% url 'register'%}">Registrate</a></h4>
             
-            <input type="submit" value="Iniciar Sesion">
+            <input class="input" type="submit" value="Iniciar Sesion">
         </form>
     </div>
     
+    <div class="error">
+        {% if error_message %}
+        <p>{{ error_message }}</p>
+        {% endif %}
+    </div>
     
-    {% if error_message %}
-    <p>{{ error_message }}</p>
-    {% endif %}
     
     {% if access_token %}
     <p>Access Token: {{ access_token }}</p>

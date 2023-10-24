@@ -17,5 +17,16 @@
 
     border-radius: 8px;
     margin-bottom: 1rem;
-    padding: 1rem;
+    
+
+    display: flex;
+    flex-direction: row;
+}
+
+.div-interno-home img{
+    height: 15rem;
+    margin-right: 1rem;
+
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
 }
