@@ -13,9 +13,30 @@ from recetas.models import Recetas
 from blogs.models import Blog
 
 import pandas as pd
+
 User = get_user_model()
 
 def home(request):
+    df_blogs = pd.read_csv("C:/Users/PC/Documents/Sistemas distribuidos/api-recetas/Recetario/usuarios/recetas.csv")
+    df_blogs['ingredientes'] = df_blogs['ingredientes'].apply(lambda x: ''.join(map(str, x)).replace('[', '').replace(']', '').replace("'", ''))
+    df_blogs['pasos'] = df_blogs['pasos'].apply(lambda x: ''.join(map(str, x)).replace('[', '').replace(']', '').replace("'", ''))
+    for index, row in df_blogs.iterrows():
+        a = row["nombre"]
+        b = row["categoria"]
+        c = row["tiempo"]
+        d = row["dificultad"]
+        e = row["porciones"]
+        f = row["ingredientes"]
+        g = row["pasos"]
+        h = row["user"]
+        i = row["img"]
+
+        user = User.objects.get(id=h)
+        receta = Recetas(nombre=a, categoria = b, tiempo = c, 
+                        dificultad=d, porciones = e, ingredientes = f,
+                        pasos = g, author = user)
+        receta.save()
+
 
     recetas_data = Recetas.objects.all().order_by('-created_date')[:6]
     blogs_data = Blog.objects.all().order_by('-created_date')[:6]
