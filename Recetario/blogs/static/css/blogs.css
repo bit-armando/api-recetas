@@ -6,17 +6,25 @@ section h1{
     display: flex;
     flex-direction: column;
 
-    width: 50rem;
+    width: 40rem;
+}
+
+.div-blogs2{
+    width: 60rem;
+}
+
+.div-blog2{
+    border-bottom: 4px solid rgba(190,179,163,255);
 }
 
 .div-blog a{
-    font-size: 2.5rem;
+    font-size: 1.7rem;
     color: black;
 }
 
 .div-blog p{
-    font-size: 2rem;
-    font-weight: 400;
+    font-size: 1.4rem;
+    font-weight: 300;
 }
 
 .division-blog{

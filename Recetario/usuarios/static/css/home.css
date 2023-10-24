@@ -1,0 +1,15 @@
+.div-home{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 4rem;
+
+    margin: 2rem 3rem;
+}
+
+.div-interno-home{
+    background-color: #ebe7e4;
+
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 1rem;
+}
