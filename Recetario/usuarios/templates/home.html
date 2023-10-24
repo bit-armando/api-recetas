@@ -32,7 +32,7 @@
     <div class="div-blogs div-blogs2">
       {% for blog in blogs %}
       {% if blog.photo %}
-        <img src="{{blog.photo.url}}" >
+        <img class="img-home" src="{{blog.photo.url}}" >
       {% else %}
         <p>No image available</p>
       {%endif%}

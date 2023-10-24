@@ -6,6 +6,12 @@
     margin: 2rem 3rem;
 }
 
+.img-home{
+    height: 30rem;
+    width: auto;
+    object-fit: cover;
+}
+
 .div-interno-home{
     background-color: #ebe7e4;
 

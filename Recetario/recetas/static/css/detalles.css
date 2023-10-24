@@ -1,14 +1,26 @@
 .contenido-detalles-receta{
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20rem;
+}
+
+.detalles-recetas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.detalles-recetas p{
+    font-size: 1.5rem;
+    margin: 1rem 15rem ;
 }
 
 .opciones-recetas{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 3rem;
 }
 
 .opciones-recetas a{
