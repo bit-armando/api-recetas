@@ -49,14 +49,14 @@ class BlogListView(ListView):
     model = Blog
     template_name = 'blog_list.html'  
     context_object_name = 'blogs'  
-    paginate_by = 2
+    paginate_by = 10
 
 
 class BlogByAuthorListView(ListView):
     model = Blog
     template_name = 'blog_list.html'
     context_object_name = 'blogs'
-    paginate_by = 2
+    paginate_by = 10
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
