@@ -13,12 +13,16 @@ from recetas.models import Recetas
 from blogs.models import Blog
 
 import pandas as pd
+from PIL import Image
+from django.core.files.base import ContentFile
+from django.core.files.temp import NamedTemporaryFile
+from django.core.files import File
+import requests
+
 
 User = get_user_model()
 
 def home(request):
-
-
     recetas_data = Recetas.objects.all().order_by('-created_date')[:6]
     blogs_data = Blog.objects.all().order_by('-created_date')[:6]
 
