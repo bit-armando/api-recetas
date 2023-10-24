@@ -24,8 +24,10 @@
     <p>Tiempo {{ receta.tiempo }}</p>
     <p>Dificultad {{ receta.dificultad }}</p>
     <p>Porciones: {{ receta.porciones }}</p>
-    <p>ingredientes {{ receta.ingredientes }}</p>
-    <p>pasos {{ receta.pasos }}</p>
+    <p>Ingredientes </p>
+    <p>{{ receta.ingredientes }}</p>
+    <p>Pasos </p>
+    <p>{{ receta.pasos }}</p>
 
     {% if receta.photo %}
       <img src="{{receta.photo.url}}" >
