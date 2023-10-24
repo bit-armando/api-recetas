@@ -1,10 +1,10 @@
 body{
-    margin: 2rem 0;
+    margin: 5rem 0;
     
 }
 
 textarea{
-    height: 15rem;
+    height: 13rem;
 }
 
 select{
@@ -12,4 +12,8 @@ select{
     height: 2rem;
     border-radius: 6px;
     border: 1px solid black;
+}
+
+button{
+    margin-bottom: 2rem;
 }
